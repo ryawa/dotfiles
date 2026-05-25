@@ -5,6 +5,8 @@
 	autosetuprebase = always
 [init]
 	defaultBranch = main
+[alias]
+    graph = log --all --graph --decorate --oneline
 
 # https://blog.gitbutler.com/how-git-core-devs-configure-git/
 [column]
