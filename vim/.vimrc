@@ -12,11 +12,6 @@ set clipboard=unnamed
 set hidden
 let g:is_posix = 1
 
-" Helps force plugins to load correctly when it is turned back on below
-filetype off
-
-" TODO: Load plugins here (pathogen or vundle)
-
 syntax on
 filetype plugin indent on
 
@@ -50,6 +45,9 @@ set display+=truncate
 
 " Whitespace
 set wrap
+let &showbreak = "+++ "
+set linebreak
+set breakindent
 set formatoptions=tcrqwn1j
 set tabstop=4
 set shiftwidth=4
@@ -81,6 +79,14 @@ runtime! ftplugin/man.vim
 
 " Color scheme
 set background=dark
-:highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
-:highlight Pmenu ctermbg=Gray
-:highlight PmenuSel ctermbg=LightGray
+highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
+highlight Pmenu ctermbg=Gray
+highlight PmenuSel ctermbg=LightGray
+
+packadd lsp
+call LspAddServer([#{
+	\    name: 'clangd',
+	\    filetype: ['c', 'cpp'],
+	\    path: 'clangd',
+	\    args: ['--background-index']
+	\  }])

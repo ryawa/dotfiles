@@ -10,3 +10,15 @@
 [submodule "tmux/.tmux/plugins/tmux-continuum"]
 	path = tmux/.tmux/plugins/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum.git
+[submodule "vim/.vim/pack/downloads/opt/lsp"]
+	path = vim/.vim/pack/downloads/opt/lsp
+	url = git@github.com:yegappan/lsp.git
+[submodule "vim/.vim/pack/tpope/start/commentary"]
+	path = vim/.vim/pack/tpope/start/commentary
+	url = https://tpope.io/vim/commentary.git
+[submodule "vim/.vim/pack/tpope/start/fugitive"]
+	path = vim/.vim/pack/tpope/start/fugitive
+	url = https://tpope.io/vim/fugitive.git
+[submodule "vim/.vim/pack/tpope/start/surround"]
+	path = vim/.vim/pack/tpope/start/surround
+	url = https://tpope.io/vim/surround.git
