@@ -1,105 +1,79 @@
-let g:pyindent_open_paren = 'shiftwidth()'
-set clipboard=unnamed
-
-" Don't try to be vi compatible
 set nocompatible
+set modelines=0
+
+
+command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
+        \ | diffthis | wincmd p | diffthis
+let g:is_posix = 1
+inoremap <C-U> <C-G>u<C-U>
+inoremap <C-W> <C-G>u<C-W>
+set sessionoptions-=options
+set viewoptions-=options
+set viminfo^=!
+setglobal tags-=./tags tags-=./tags; tags^=./tags;
+
+set complete-=i
+set nrformats-=octal
+set ttimeout
+set ttimeoutlen=100
 
 " Helps force plugins to load correctly when it is turned back on below
 filetype off
 
 " TODO: Load plugins here (pathogen or vundle)
 
-" Turn on syntax highlighting
 syntax on
-
-" For plugins to load correctly
 filetype plugin indent on
 set autoindent
+set autoread
+set hidden
+set clipboard=unnamed
 
-" TODO: Pick a leader key
-" let mapleader = ","
-
-" Security
-set modelines=0
-
-" Show line numbers
+" UI
 set number
 set relativenumber
-
-" Show file stats
 set ruler
-
-" Blink cursor on error instead of beeping (grr)
+set laststatus=2
 set visualbell
+set colorcolumn=80
+set scrolloff=10
+set display+=truncate
 
 " Encoding
 set encoding=utf-8
 
 " Whitespace
 set wrap
-set formatoptions=qrn1
-set colorcolumn=80
+set formatoptions=tcrqwn1j
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set noshiftround
+set smarttab
 
 " Cursor motion
-set scrolloff=10
-set backspace=indent,eol,start
-set matchpairs+=<:> " use % to jump between pairs
+set matchpairs+=<:>
 runtime! macros/matchit.vim
+runtime! ftplugin/man.vim
 
-" Move up/down editor lines
-nnoremap j gj
-nnoremap k gk
-
-" Allow hidden buffers
-set hidden
-
-" Rendering
-set ttyfast
-
-" Status bar
-set laststatus=2
-
-" Last line
-set showmode
-set showcmd
-
-" Searching
-nnoremap / /\v
-vnoremap / /\v
+" Search
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set showmatch
-map <leader><space> :let @/=''<cr> " clear search
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')? '<Bar>diffupdate' : ''<CR><CR><C-L>
 
-" Remap help key.
-inoremap <F1> <ESC>:set invfullscreen<CR>a
-nnoremap <F1> :set invfullscreen<CR>
-vnoremap <F1> :set invfullscreen<CR>
-
-" Textmate holdouts
-
-" Formatting
+let mapleader = " "
 map <leader>q gqip
 
-" Visualize tabs and newlines
 set listchars=tab:▸\ ,eol:¬
-" Uncomment this to enable by default:
-" set list " To enable by default
-" Or use your leader key + l to toggle on/off
 map <leader>l :set list!<CR> " Toggle tabs and EOL
 
-" Color scheme (terminal)
-set t_Co=256
+nnoremap j gj
+nnoremap k gk
+
+" Color scheme 
 set background=dark
-let g:solarized_termcolors=256
-let g:solarized_termtrans=1
-" put https://raw.github.com/altercation/vim-colors-solarized/master/colors/solarized.vim
-" in ~/.vim/colors/ and uncomment:
-" colorscheme solarized
+:highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
+:highlight Pmenu ctermbg=Gray
+:highlight PmenuSel ctermbg=LightGray
