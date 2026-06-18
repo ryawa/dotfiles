@@ -19,3 +19,4 @@ export CXX=g++-15
 
 autoload -U promptinit; promptinit
 prompt pure
+source <(fzf --zsh)

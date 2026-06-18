@@ -69,8 +69,10 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')? '<Bar>diffupdate'
             \ : ''<CR><CR><C-L>
-map <leader>q gqip
-map <leader>l :set list!<CR>
+nnoremap <leader>q gqip
+nnoremap <leader>l :set list!<CR>
+nnoremap <leader>b :Buffers<CR>
+nnoremap <leader>f :Files<CR>
 
 " Commands
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
@@ -90,3 +92,5 @@ call LspAddServer([#{
 	\    path: 'clangd',
 	\    args: ['--background-index']
 	\  }])
+
+set rtp+=/opt/homebrew/opt/fzf
