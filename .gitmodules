@@ -10,9 +10,6 @@
 [submodule "tmux/.tmux/plugins/tmux-continuum"]
 	path = tmux/.tmux/plugins/tmux-continuum
 	url = https://github.com/tmux-plugins/tmux-continuum.git
-[submodule "vim/.vim/pack/downloads/opt/lsp"]
-	path = vim/.vim/pack/downloads/opt/lsp
-	url = git@github.com:yegappan/lsp.git
 [submodule "vim/.vim/pack/tpope/start/commentary"]
 	path = vim/.vim/pack/tpope/start/commentary
 	url = https://tpope.io/vim/commentary.git
@@ -28,3 +25,9 @@
 [submodule "vim/.vim/pack/junegunn/start/fzf.vim"]
 	path = vim/.vim/pack/junegunn/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim.git
+[submodule "vim/.vim/pack/morhetz/start/gruvbox"]
+	path = vim/.vim/pack/morhetz/start/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
+[submodule "vim/.vim/pack/yegappan/opt/lsp"]
+	path = vim/.vim/pack/yegappan/opt/lsp
+	url = https://github.com/yegappan/lsp

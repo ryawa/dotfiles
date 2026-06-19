@@ -53,7 +53,8 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-set listchars=tab:▸\ ,eol:¬
+set list
+set listchars=tab:▸\ ,trail:-,nbsp:+,leadmultispace:│\ \ \ 
 
 " Search
 set hlsearch
@@ -73,6 +74,7 @@ nnoremap <leader>q gqip
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :Files<CR>
+nnoremap <leader>m :silent make \| redraw! \| cwindow<CR>
 
 " Commands
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
@@ -81,16 +83,40 @@ runtime! ftplugin/man.vim
 
 " Color scheme
 set background=dark
-highlight MatchParen cterm=underline ctermbg=NONE ctermfg=NONE
-highlight Pmenu ctermbg=Gray
-highlight PmenuSel ctermbg=LightGray
+set termguicolors
+let g:gruvbox_italic = 1
+colorscheme gruvbox
 
 packadd lsp
-call LspAddServer([#{
-	\    name: 'clangd',
-	\    filetype: ['c', 'cpp'],
-	\    path: 'clangd',
-	\    args: ['--background-index']
-	\  }])
+augroup MyLsp
+    autocmd!
+    autocmd User LspSetup call LspOptionsSet(#{
+                \ semanticHighlight: v:true,
+                \ })
+    autocmd User LspSetup call LspAddServer([#{
+                \ name: 'clangd',
+                \ filetype: ['c', 'cpp'],
+                \ path: 'clangd',
+                \ args: ['--background-index']
+                \ }])
+    autocmd User LspAttached call s:LspAttached()
+    autocmd User LspDetached call s:LspDetached()
+augroup END
+function! s:LspAttached() abort
+    nnoremap <buffer><silent> gd <Cmd>LspGotoDefinition<CR>
+    nnoremap <buffer><silent> K  <Cmd>LspHover<CR>
+    nnoremap <buffer><silent> [d <Cmd>LspDiag prev<CR>
+    nnoremap <buffer><silent> ]d <Cmd>LspDiag next<CR>
+    nnoremap <buffer><silent> <leader>rn <Cmd>LspRename<CR>
+    nnoremap <buffer><silent> <leader>ca <Cmd>LspCodeAction<CR>
+endfunction
+function! s:LspDetached() abort
+    silent! unmap <buffer> gd
+    silent! unmap <buffer> K
+    silent! unmap <buffer> [d
+    silent! unmap <buffer> ]d
+    silent! unmap <buffer> <leader>rn
+    silent! unmap <buffer> <leader>ca
+endfunction
 
 set rtp+=/opt/homebrew/opt/fzf
