@@ -66,8 +66,10 @@ set smartcase
 let mapleader = " "
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
-nnoremap j gj
-nnoremap k gk
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')? '<Bar>diffupdate'
             \ : ''<CR><CR><C-L>
 nnoremap <leader>q gqip
