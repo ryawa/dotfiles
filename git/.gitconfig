@@ -6,43 +6,47 @@
 [init]
 	defaultBranch = main
 [alias]
-    graph = log --all --graph --decorate --oneline
+	graph = log --all --graph --decorate --oneline
+	d = difftool
 [url "git@github.com:"]
-    insteadOf = https://github.com/
+	insteadOf = https://github.com/
 
 # https://blog.gitbutler.com/how-git-core-devs-configure-git/
 [column]
-    ui = auto
+	ui = auto
 [branch]
-    sort = -committerdate
+	sort = -committerdate
 [tag]
-    sort = version:refname
+	sort = version:refname
 [diff]
-    algorithm = histogram
-    colorMoved = plain
-    mnemonicPrefix = true
-    renames = true
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+	tool = vimdiff
 [push]
-    autoSetupRemote = true
-    followTags = true
+	autoSetupRemote = true
+	followTags = true
 [fetch]
-    prune = true
-    pruneTags = true
-    all = true
+	prune = true
+	pruneTags = true
+	all = true
 [help]
-    autocorrect = prompt
+	autocorrect = prompt
 [commit]
-    verbose = true
+	verbose = true
 [rerere]
-    enabled = true
-    autoupdate = true
+	enabled = true
+	autoupdate = true
 [core]
-    excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 [rebase]
-    autoSquash = true
-    autoStash = true
-    updateRefs = true
+	autoSquash = true
+	autoStash = true
+	updateRefs = true
 [merge]
-    conflictstyle = zdiff3
+	conflictstyle = zdiff3
 [pull]
-    rebase = true
+	rebase = true
+[difftool]
+	prompt = false

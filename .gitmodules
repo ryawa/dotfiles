@@ -31,3 +31,15 @@
 [submodule "vim/.vim/pack/yegappan/opt/lsp"]
 	path = vim/.vim/pack/yegappan/opt/lsp
 	url = https://github.com/yegappan/lsp
+[submodule "vim/.vim/pack/tpope/start/sleuth"]
+	path = vim/.vim/pack/tpope/start/sleuth
+	url = https://tpope.io/vim/sleuth.git
+[submodule "vim/.vim/pack/Ashik80/start/VimExplorer"]
+	path = vim/.vim/pack/Ashik80/start/VimExplorer
+	url = https://github.com/Ashik80/VimExplorer.git
+[submodule "vim/.vim/pack/wakatime/start/vim-wakatime"]
+	path = vim/.vim/pack/wakatime/start/vim-wakatime
+	url = git@github.com:wakatime/vim-wakatime.git
+[submodule "tmux/.tmux/plugins/tmux-pain-control"]
+	path = tmux/.tmux/plugins/tmux-pain-control
+	url = git@github.com:tmux-plugins/tmux-pain-control.git

@@ -4,6 +4,7 @@ set modelines=0
 set viminfo^=!
 set sessionoptions-=options
 set viewoptions-=options
+set wildmode=longest:full,full
 set ttimeout
 set ttimeoutlen=100
 set autoread
@@ -76,11 +77,17 @@ nnoremap <leader>q gqip
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :Files<CR>
-nnoremap <leader>m :silent make \| redraw! \| cwindow<CR>
+nnoremap <leader>m :silent make \| cwindow \| redraw! <CR>
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
+nnoremap <leader>co :copen<CR>
+nnoremap <leader>cc :cclose<CR>
+nnoremap <silent> - :VimExplorer<CR>
 
 " Commands
 command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_
             \ | diffthis | wincmd p | diffthis
+command! -nargs=+ Grep execute 'silent grep! <args>' | cwindow | redraw!
 runtime! ftplugin/man.vim
 
 " Color scheme
@@ -93,13 +100,21 @@ packadd lsp
 augroup MyLsp
     autocmd!
     autocmd User LspSetup call LspOptionsSet(#{
-                \ semanticHighlight: v:true,
+                \ semanticHighlight: v:true
                 \ })
     autocmd User LspSetup call LspAddServer([#{
                 \ name: 'clangd',
                 \ filetype: ['c', 'cpp'],
                 \ path: 'clangd',
-                \ args: ['--background-index']
+                \ args: ['--background-index', '--header-insertion=never']
+                \ }])
+    autocmd User LspSetup call LspAddServer([#{
+                \ name: 'jdtls',
+                \ filetype: ['java'],
+                \ path: 'jdtls',
+                \ args: [
+                \    '-data',
+                \    expand('~/.cache/jdtls/' .. fnamemodify(getcwd(), ':t'))]
                 \ }])
     autocmd User LspAttached call s:LspAttached()
     autocmd User LspDetached call s:LspDetached()
