@@ -19,6 +19,9 @@ filetype plugin indent on
 " Editor behavior
 set autoindent
 set complete-=i
+set completeopt=menuone,popup,noselect,noinsert,fuzzy
+autocmd InsertCharPre * if v:char == '/' || v:char == '.' | call feedkeys("\<C-X>\<C-F>", 'n') | endif
+autocmd CompleteDone  * if !empty(v:completed_item) && has_key(v:completed_item, 'word') && v:completed_item.word =~# '/$' | call feedkeys("\<C-X>\<C-F>", 'n') | endif
 set nrformats-=octal
 setglobal tags-=./tags tags-=./tags; tags^=./tags;
 set matchpairs+=<:>
@@ -65,6 +68,7 @@ set smartcase
 
 " Mappings
 let mapleader = " "
+nnoremap Y y$
 inoremap <C-U> <C-G>u<C-U>
 inoremap <C-W> <C-G>u<C-W>
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'

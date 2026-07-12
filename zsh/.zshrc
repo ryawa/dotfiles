@@ -32,3 +32,6 @@ alias sandbox='docker run --rm -it \
 autoload -U promptinit; promptinit
 prompt pure
 source <(fzf --zsh)
+
+# PROS CLI autocomplete
+. "/Users/ryan/Library/Application Support/PROS/autocomplete/pros-complete.zsh"
