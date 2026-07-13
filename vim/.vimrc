@@ -20,8 +20,6 @@ filetype plugin indent on
 set autoindent
 set complete-=i
 set completeopt=menuone,popup,noselect,noinsert,fuzzy
-autocmd InsertCharPre * if v:char == '/' || v:char == '.' | call feedkeys("\<C-X>\<C-F>", 'n') | endif
-autocmd CompleteDone  * if !empty(v:completed_item) && has_key(v:completed_item, 'word') && v:completed_item.word =~# '/$' | call feedkeys("\<C-X>\<C-F>", 'n') | endif
 set nrformats-=octal
 setglobal tags-=./tags tags-=./tags; tags^=./tags;
 set matchpairs+=<:>
@@ -139,5 +137,11 @@ function! s:LspDetached() abort
     silent! unmap <buffer> <leader>rn
     silent! unmap <buffer> <leader>ca
 endfunction
+
+augroup MarkdownCompletion
+    autocmd!
+    autocmd FileType markdown autocmd InsertCharPre <buffer> if v:char ==# '/' || v:char ==# '.' | call feedkeys("\<C-x>\<C-f>", 'n') | endif
+    autocmd FileType markdown autocmd CompleteDone <buffer> if !empty(v:completed_item) && has_key(v:completed_item, 'word') && v:completed_item.word =~# '/$' | call feedkeys("\<C-x>\<C-f>", 'n') | endif
+augroup END
 
 set rtp+=/opt/homebrew/opt/fzf
