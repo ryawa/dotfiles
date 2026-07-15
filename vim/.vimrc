@@ -50,7 +50,7 @@ set wrap
 let &showbreak = "+++ "
 set linebreak
 set breakindent
-set formatoptions=tcrqwn1j
+set formatoptions=tcrqn1j
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
@@ -79,7 +79,8 @@ nnoremap <leader>q gqip
 nnoremap <leader>l :set list!<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :Files<CR>
-nnoremap <leader>m :silent make \| cwindow \| redraw! <CR>
+nnoremap <leader>m :make<CR>
+nnoremap <leader>sm :set makeprg=
 nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 nnoremap <leader>co :copen<CR>
@@ -117,6 +118,12 @@ augroup MyLsp
                 \ args: [
                 \    '-data',
                 \    expand('~/.cache/jdtls/' .. fnamemodify(getcwd(), ':t'))]
+                \ }])
+    autocmd User LspSetup call LspAddServer([#{
+                \ name: 'basedpyright',
+                \ filetype: ['python'],
+                \ path: 'basedpyright-langserver',
+                \ args: ['--stdio']
                 \ }])
     autocmd User LspAttached call s:LspAttached()
     autocmd User LspDetached call s:LspDetached()
