@@ -81,8 +81,6 @@ nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>f :Files<CR>
 nnoremap <leader>m :make<CR>
 nnoremap <leader>sm :set makeprg=
-nnoremap [q :cprev<CR>
-nnoremap ]q :cnext<CR>
 nnoremap <leader>co :copen<CR>
 nnoremap <leader>cc :cclose<CR>
 nnoremap <silent> - :VimExplorer<CR>

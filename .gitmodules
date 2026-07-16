@@ -43,3 +43,9 @@
 [submodule "tmux/.tmux/plugins/tmux-pain-control"]
 	path = tmux/.tmux/plugins/tmux-pain-control
 	url = git@github.com:tmux-plugins/tmux-pain-control.git
+[submodule "vim/.vim/pack/tpope/start/unimpaired"]
+	path = vim/.vim/pack/tpope/start/unimpaired
+	url = https://tpope.io/vim/unimpaired.git
+[submodule "vim/.vim/pack/tpope/start/repeat"]
+	path = vim/.vim/pack/tpope/start/repeat
+	url = https://tpope.io/vim/repeat.git

@@ -22,6 +22,8 @@ alias gcd='cd $(git rev-parse --show-toplevel)'
 alias tree='tree -C'
 alias t2='tree -CL 2'
 
+alias plan='vim ~/plan/$(date "+%Y-%m-%d").md'
+
 alias sandbox='docker run --rm -it \
     -v $(pwd):/workspace/${PWD##*/} \
     -v ~/.claude-sandbox/.claude:/home/claude/.claude \
